@@ -1,0 +1,16 @@
+name: DevSecOps Pipeline
+
+on:
+  push:
+    branches: [ main, master ] # Uruchom przy pushu do gałęzi main lub master
+  workflow_dispatch: # Uruchom ręcznie z interfejsu GitHub
+
+jobs:
+  build-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobranie kodu z repozytorium
+        uses: actions/checkout@v4
+
+      - name: Budowanie obrazu Docker
+        run: docker build -t juice-shop:latest .
