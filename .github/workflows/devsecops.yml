@@ -2,8 +2,8 @@ name: DevSecOps Pipeline
 
 on:
   push:
-    branches: [ main, master ] # Uruchom przy pushu do gałęzi main lub master
-  workflow_dispatch: # Uruchom ręcznie z interfejsu GitHub
+    branches: [ main, master ] 
+  workflow_dispatch: 
 
 jobs:
   build-app:
