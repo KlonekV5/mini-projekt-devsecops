@@ -2,8 +2,8 @@ name: DevSecOps Pipeline
 
 on:
   push:
-    branches: [ main, master ] 
-  workflow_dispatch: 
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   build-app:
@@ -14,3 +14,20 @@ jobs:
 
       - name: Budowanie obrazu Docker
         run: docker build -t juice-shop:latest .
+
+  sca-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pobranie kodu z repozytorium
+        uses: actions/checkout@v4
+
+      - name: Ustawienie środowiska Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalacja zależności
+        run: npm install
+
+      - name: Uruchomienie skanowania SCA (npm audit)
+        run: npm audit
